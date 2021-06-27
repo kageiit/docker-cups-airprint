@@ -1,9 +1,7 @@
 # base image
-FROM ubuntu:xenial
+FROM debian:stable-slim
 
-# label with HEAD commit if given
-ARG GIT_COMMIT=unspecified
-LABEL git_commit=$GIT_COMMIT
+LABEL Maintainer Gautam Korlam <https://github.com/kageiit>
 
 # Install the packages we need. Avahi will be included
 RUN apt-get update && apt-get install -y \
@@ -11,15 +9,13 @@ RUN apt-get update && apt-get install -y \
 	cups-pdf \
   	cups-bsd \
   	cups-filters \
-	hplip \
 	inotify-tools \
 	foomatic-db-compressed-ppds \
 	printer-driver-all \
 	openprinting-ppds \
-	hpijs-ppds \
-	hp-ppd \
 	python-cups \
 	cups-backend-bjnp \
+	printer-driver-brlaser \
 && rm -rf /var/lib/apt/lists/*
 
 # This will use port 631
